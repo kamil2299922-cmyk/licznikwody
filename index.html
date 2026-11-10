@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rozkład zużycia wody</title>
+  <meta name="description" content="Rozpisanie zużycia wody z liczników na poszczególne dni okresu rozliczeniowego.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>💧 Rozkład zużycia wody</h1>
+      <p class="lead">Rozpisuje zużycie z liczników na poszczególne dni okresu. W weekendy i święta zużycie jest większe o 20–30%.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <form id="form" class="card no-print" novalidate>
+      <h2>Okres</h2>
+      <div class="grid dates">
+        <label>Data ostatniego odczytu
+          <input type="date" id="dateFrom" required>
+        </label>
+        <label>Data najnowszego odczytu
+          <input type="date" id="dateTo" required>
+        </label>
+      </div>
+      <p class="hint" id="periodInfo"></p>
+
+      <h2>Liczniki <span class="unit">(m³)</span></h2>
+      <p class="hint">Wypełnij tylko te liczniki, których używasz. Puste liczniki są pomijane.</p>
+      <div class="meters" id="meters"></div>
+
+      <div class="actions">
+        <button type="submit" class="btn primary">Rozpisz zużycie</button>
+        <button type="button" class="btn" id="btnReset">Wyczyść</button>
+      </div>
+      <div id="errors" class="errors" role="alert" hidden></div>
+    </form>
+
+    <section id="result" hidden>
+      <div class="card">
+        <div class="result-head no-print">
+          <div>
+            <h2>Wynik</h2>
+            <p class="hint" id="resultInfo"></p>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn" id="btnReroll" title="Wylosuj inny rozkład z zachowaniem sum i limitów">🎲 Losuj ponownie</button>
+            <button type="button" class="btn primary" id="btnPrint">🖨️ Drukuj / PDF</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="table"></table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer no-print">
+    Wszystkie obliczenia wykonywane są lokalnie w przeglądarce — dane nigdzie nie są wysyłane.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
